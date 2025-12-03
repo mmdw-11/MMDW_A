@@ -36,4 +36,8 @@ public class AdminUserRoleService {
         });
         adminUserRoleDAO.saveAll(urs);
     }
+    // 【新增】专门用来给新用户分配单个角色的方法
+    public void addAdminUserRole(AdminUserRole adminUserRole) {
+        adminUserRoleDAO.save(adminUserRole);
+    }
 }
