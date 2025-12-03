@@ -1,10 +1,10 @@
 package com.gm.wj.controller;
 
-import com.gm.wj.entity.AdminUserRole; // 【新增】引入实体
+import com.gm.wj.entity.AdminUserRole;
 import com.gm.wj.entity.User;
 import com.gm.wj.result.Result;
 import com.gm.wj.result.ResultFactory;
-import com.gm.wj.service.AdminUserRoleService; // 【新增】引入服务
+import com.gm.wj.service.AdminUserRoleService;
 import com.gm.wj.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -17,7 +17,6 @@ import org.springframework.web.util.HtmlUtils;
 
 /**
  * Login and register controller.
- *
  * @author Evan
  * @date 2019/4
  */
@@ -27,7 +26,6 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    // 【核心修改 1】必须在这里注入这个 Service，否则下面用的时候会报错
     @Autowired
     AdminUserRoleService adminUserRoleService;
 
@@ -45,7 +43,9 @@ public class LoginController {
             if (!user.isEnabled()) {
                 return ResultFactory.buildFailResult("该用户已被禁用");
             }
-            return ResultFactory.buildSuccessResult(username);
+            // 【核心修改】这里原来是 return ... (username);
+            // 改成 return user; 这样前端才能拿到 id！
+            return ResultFactory.buildSuccessResult(user);
         } catch (IncorrectCredentialsException e) {
             return ResultFactory.buildFailResult("密码错误");
         } catch (UnknownAccountException e) {
@@ -60,14 +60,10 @@ public class LoginController {
             case 0:
                 return ResultFactory.buildFailResult("用户名和密码不能为空");
             case 1:
-                // 【核心修改 2】注册成功后，自动分配角色
                 AdminUserRole userRole = new AdminUserRole();
                 userRole.setUid(user.getId());
-                userRole.setRid(2); // 2 代表 editor (内容管理员)
-
-                // 调用 Service 保存
+                userRole.setRid(2);
                 adminUserRoleService.addAdminUserRole(userRole);
-
                 return ResultFactory.buildSuccessResult("注册成功");
             case 2:
                 return ResultFactory.buildFailResult("用户已存在");
