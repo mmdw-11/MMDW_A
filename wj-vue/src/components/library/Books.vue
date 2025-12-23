@@ -14,7 +14,8 @@
         </p>
         <p slot="content" style="width: 300px" class="abstract">{{item.abs}}</p>
         <el-card style="width: 135px;margin-bottom: 20px;height: 233px;float: left;margin-right: 15px" class="book"
-                 bodyStyle="padding:10px" shadow="hover">
+                 bodyStyle="padding:10px" shadow="hover"
+                 @click.native="showBookDetail(item.id)">
           <div class="cover">
             <img :src="item.cover" alt="封面">
           </div>
@@ -35,16 +36,18 @@
         :total="books.length">
       </el-pagination>
     </el-row>
+    <book-detail-modal ref="bookDetailModal"></book-detail-modal>
   </div>
 </template>
 
 <script>
   import SearchBar from './SearchBar'
   import ViewSwitch from './ViewSwitch'
+  import BookDetailModal from './BookDetailModal'
 
   export default {
     name: 'Books',
-    components: {SearchBar, ViewSwitch},
+    components: {SearchBar, ViewSwitch, BookDetailModal},
     data () {
       return {
         books: [],
@@ -76,6 +79,10 @@
             _this.books = resp.data.result
           }
         })
+      },
+      showBookDetail (bookId) {
+        console.log('点击了图书 ID:', bookId)
+        this.$refs.bookDetailModal.show(bookId)
       }
     }
   }

@@ -48,6 +48,8 @@ public class Book {
     /**
      * Abstract of the book.
      */
+    @Lob
+    @Column(name = "abs", columnDefinition = "TEXT")
     private String abs;
 
     /**
@@ -61,4 +63,23 @@ public class Book {
     @ManyToOne
     @JoinColumn(name="cid")
     private Category category;
+
+//    // 新增字段
+//    @Column(name = "average_rating")
+//    private Double averageRating = 0.0;  // 平均评分
+//
+//    @Column(name = "rating_count")
+//    private Integer ratingCount = 0;      // 评分人数
+//
+//    @Column(name = "review_count")
+//    private Integer reviewCount = 0;      // 评论数量
+//
+//    @Column(name = "quote_count")
+//    private Integer quoteCount = 0;       // 摘录数量
+
+//    @Transient
+//    private List<Review> recentReviews;   // 最近评论（不存数据库）
+//
+//    @Transient
+//    private List<Quote> popularQuotes;    // 热门摘录（不存数据库）
 }

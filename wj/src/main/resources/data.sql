@@ -2,7 +2,7 @@
 -- Records of admin_menu
 -- ----------------------------
 INSERT INTO `admin_menu` VALUES ('1', '/admin', 'AdminIndex', '首页', 'el-icon-s-home', 'AdminIndex', '0');
-INSERT INTO `admin_menu` VALUES ('2', '/admin/dashboard', 'DashboardAdmin', '运行情况', null, 'dashboard/admin/index', '1');
+INSERT INTO `admin_menu` VALUES ('2', '/admin/dashboard', 'DashboardAdmin', '运行情况', null, 'dashboard/admin/index', '5');
 INSERT INTO `admin_menu` VALUES ('3', '/admin', 'User', '用户管理', 'el-icon-user', 'AdminIndex', '0');
 INSERT INTO `admin_menu` VALUES ('4', '/admin', 'Content', '内容管理', 'el-icon-tickets', 'AdminIndex', '0');
 INSERT INTO `admin_menu` VALUES ('5', '/admin', 'System', '系统配置', 'el-icon-s-tools', 'AdminIndex', '0');
@@ -49,7 +49,7 @@ INSERT INTO `admin_role_menu` VALUES ('79', '2', '4');
 INSERT INTO `admin_role_menu` VALUES ('80', '2', '8');
 INSERT INTO `admin_role_menu` VALUES ('81', '2', '9');
 INSERT INTO `admin_role_menu` VALUES ('82', '2', '10');
-INSERT INTO `admin_role_menu` VALUES ('121', '1', '1');
+# INSERT INTO `admin_role_menu` VALUES ('121', '1', '1');
 INSERT INTO `admin_role_menu` VALUES ('122', '1', '2');
 INSERT INTO `admin_role_menu` VALUES ('123', '1', '3');
 INSERT INTO `admin_role_menu` VALUES ('124', '1', '6');
@@ -59,6 +59,15 @@ INSERT INTO `admin_role_menu` VALUES ('127', '1', '8');
 INSERT INTO `admin_role_menu` VALUES ('128', '1', '9');
 INSERT INTO `admin_role_menu` VALUES ('129', '1', '10');
 INSERT INTO `admin_role_menu` VALUES ('130', '1', '5');
+
+-- 为系统管理员分配反馈管理权限
+INSERT INTO `admin_role_menu` VALUES ('131', '1', '11');
+INSERT INTO `admin_role_menu` VALUES ('132', '2', '12');
+INSERT INTO `admin_role_menu` VALUES ('133', '3', '12');
+-- 为内容管理员分配反馈权限
+INSERT INTO `admin_role_menu` VALUES ('134', '2', '13');
+INSERT INTO `admin_role_menu` VALUES ('135', '3', '13');
+-- ----------------------------
 
 -- ----------------------------
 -- Records of admin_role_permission

@@ -59,6 +59,16 @@ public class LibraryController {
         }
     }
 
+    // 获取单个图书详情
+    @GetMapping("/api/books/{id}")
+    public Result getBookDetail(@PathVariable("id") Integer id) {
+        Book book = bookService.findById(id); // 需要在 BookService 中添加这个方法
+        if (book == null) {
+            return ResultFactory.buildFailResult("图书不存在");
+        }
+        return ResultFactory.buildSuccessResult(book);
+    }
+
     @PostMapping("/api/admin/content/books/covers")
     public String coversUpload(MultipartFile file) {
         String folder = "D:/workspace/img";
